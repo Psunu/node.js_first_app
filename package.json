@@ -1,0 +1,19 @@
+{
+  "name": "node.js_first_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Psunu/node.js_first_app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Psunu/node.js_first_app/issues"
+  },
+  "homepage": "https://github.com/Psunu/node.js_first_app#readme"
+}
