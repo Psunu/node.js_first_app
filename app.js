@@ -1,37 +1,22 @@
-/*var express = require('express');
-
+var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var fs = require('fs');
+var router = require('./router/main')(app, fs);
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+
+app.listen(80, function() {
+    console.log("Express server has started on port 80");
 });
 
-app.listen(3000, function() {
-  console.log('Server On!');
-});*/
-
-/*
-var http = require("http");
-
-http.createServer(function(req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end("Hello World\n");
-}).listen(8000);
-
-console.log("Server running at http://localhost:8000");
-*/
-
-var events = require("events");
-var eventEmitter = new events.EventEmitter();
-
-eventEmitter.on("connection", function() {
-  console.log("Connection Successful");
-  eventEmitter.emit("data_recevied");
-});
-
-eventEmitter.on("data_recevied", function() {
-  console.log("Data Received");
-});
-
-eventEmitter.emit("connection");
-console.log("Program has ended");
+app.use(express.static('public'));
+app.use(bodyParser.json());
+app.use(session({
+    secret: '@@@@SUNWOOSIGN@@@@',
+    resave: false,
+    saveUninitialized: true
+}));

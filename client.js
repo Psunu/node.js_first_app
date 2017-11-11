@@ -1,18 +1,29 @@
 var http = require('http');
 
-var options = {
-  host: 'localhost',
-  port: '8000',
-  path: '/index.html'
+var userinfo = {
+    'password': 'third_pass',
+    'name': 'sunwoo'
 };
 
-http.request(options, function(response) {
-  var body = '';
-  response.on('data', function(data) {
-    body += data;
-  });
+var headers = {
+    'Content-Type': 'application/json'
+};
 
-  response.on('end', function() {
-    console.log(body);
-  });
-}).end();
+var options = {
+    url: 'http://localhost',
+    path: '/addUser/third_user',
+    port: 80,
+    method: 'POST',
+    headers: headers
+};
+
+var req = http.request(options, function(err, res) {
+    if (err) {
+        console.log(err);
+        return;
+    }
+    console.log(res);
+});
+
+req.write(JSON.stringify(userinfo));
+req.end();
